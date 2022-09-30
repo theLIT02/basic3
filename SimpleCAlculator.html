@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calculator</title>
+    <style>
+        
+       table,caption
+        {
+            text-transform: uppercase;
+            border: 1px solid black;
+            background: darkgrey;
+        }
+        td
+        {
+            width: 120px !important;
+            border: 1px solid black;
+            background: darkgrey;
+        }
+        input
+        {
+            width: 120px;
+        }
+        td button
+        {
+            margin:  0 auto;
+        }
+    </style>
+</head>
+<body>
+    
+    <div>
+    <table>
+        <caption>Simple Calculator</caption>
+        <tr><td>Value1</td><td><input type="number" name="value1" id="value1"></td><td>Value2</td><td><input type="number" name="value2" id="value2"></td></tr>
+        <tr><td><button id="add">Addition</button></td><td><button id="sub">Subtraction</button></td><td><button id="mul">Multiply</button></td><td><button id="div">Divide</button></td></tr>
+        <tr><td>Answer</td><td><input type="text" disabled id="result"></td><td colspan="2"><button id="clear" onclick="clearResult()">Clear All</button></td></tr>
+    </table>
+    </div>
+
+
+    <script>
+        const First=  document.getElementById('value1')
+        const Second=  document.getElementById('value2')
+        const Result=  document.getElementById('result')
+        document.querySelectorAll('button').forEach(operator => {
+        operator.addEventListener('click',()=>
+                Result.value=`${returnResult(parseInt(First.value),parseInt(Second.value),operator.id)}`)
+          
+        });
+    
+    const returnResult=(a,b,operator)=>
+    {
+        switch (operator) {
+            case 'add':return a+b; break;
+            case 'sub':return a-b; break;
+            case 'mul':return a*b; break;
+            case 'div':return (a/b).toFixed(3); break;
+            case 'clear':return ""; break;
+            default:
+                break;
+        }
+    }
+
+    const clearResult=()=>
+    {
+        First.value="";Second.value="";Result.value=""
+    }
+    </script>
+</body>
+</html>
